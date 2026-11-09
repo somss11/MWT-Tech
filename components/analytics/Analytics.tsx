@@ -1,13 +1,16 @@
+"use client";
+
 import Script from "next/script";
-import { GA_ID } from "@/lib/analytics";
+import { GA_ID, LINKEDIN_PARTNER_ID } from "@/lib/analytics";
+import { useConsent } from "@/lib/consent";
 
 /**
- * Google Analytics (the Google tag), loaded on every page for every visitor. This is Google's own snippet, in the way
- * Next.js loads scripts: the tag file after the page is interactive, then the setup that sends the page view.
- * There is no consent banner.
+ * Google Analytics (the Google tag) and the LinkedIn Insight Tag. Neither loads until the visitor accepts in the
+ * cookie banner (ConsentBanner). Both are the vendors' own snippets, loaded the way Next.js loads scripts.
  */
 export function Analytics() {
-  if (!GA_ID) return null;
+  const consent = useConsent();
+  if (consent !== "granted" || !GA_ID) return null;
   return (
     <>
       <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />
@@ -17,6 +20,19 @@ function gtag(){dataLayer.push(arguments);}
 window.gtag = gtag;
 gtag('js', new Date());
 gtag('config', '${GA_ID}');`}
+      </Script>
+      <Script id="linkedin-insight" strategy="afterInteractive">
+        {`_linkedin_partner_id = "${LINKEDIN_PARTNER_ID}";
+window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+(function(l) {
+if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])};
+window.lintrk.q=[]}
+var s = document.getElementsByTagName("script")[0];
+var b = document.createElement("script");
+b.type = "text/javascript";b.async = true;
+b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+s.parentNode.insertBefore(b, s);})(window.lintrk);`}
       </Script>
     </>
   );

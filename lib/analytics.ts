@@ -6,7 +6,10 @@ export const DEFAULT_GA_ID = "G-DEQF672XWJ";
 
 export const GA_ID = (process.env.NEXT_PUBLIC_GA_ID?.trim() || DEFAULT_GA_ID).trim();
 
-type Gtag = (...args: unknown[]) => void;
+/** LinkedIn Insight Tag Partner ID (public, it appears in the page source). NEXT_PUBLIC_LINKEDIN_PARTNER_ID overrides it. */
+export const LINKEDIN_PARTNER_ID = (process.env.NEXT_PUBLIC_LINKEDIN_PARTNER_ID?.trim() || "10382108").trim();
+
+type Gtag =(...args: unknown[]) => void;
 
 /** Sends an event to Google Analytics. It does nothing until analytics has loaded. */
 export function trackEvent(name: string, params?: Record<string, string | number | boolean>) {
