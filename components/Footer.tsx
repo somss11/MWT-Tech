@@ -109,7 +109,12 @@ export function Footer() {
         </div>
 
         <div className="mt-14 flex flex-col gap-4 border-t border-white/10 pt-6 text-xs text-white/40 sm:flex-row sm:items-center sm:justify-between">
-          <p>&copy; {new Date().getFullYear()} Mawkish Technologies. All rights reserved.</p>
+          <p>
+            &copy; {new Date().getFullYear()} Mawkish Technologies. All rights reserved. &middot;{" "}
+            <Link href="/privacy" className="transition hover:text-mw-mint">
+              Privacy policy
+            </Link>
+          </p>
           <p>Colombo, Sri Lanka &middot; Serving Sri Lanka, India, UAE &amp; beyond</p>
         </div>
       </div>

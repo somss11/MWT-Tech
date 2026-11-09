@@ -9,6 +9,23 @@ const nextConfig = {
   },
   // Do not advertise the framework in every response.
   poweredByHeader: false,
+  // Baseline security headers on every response. They harden the site against embedding, content sniffing and
+  // referrer leakage, and security scanners look for them. There is deliberately no Content-Security-Policy yet:
+  // a strict one would block Google Analytics, the LinkedIn tag, Sanity images and the map unless each is listed.
+  // HSTS is already sent by Vercel.
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "X-Frame-Options", value: "SAMEORIGIN" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), payment=(), usb=()" },
+        ],
+      },
+    ];
+  },
   // The SAP pages used to sit directly under /services. Anything that still links to the old address
   // (search results, bookmarks, other sites) is sent to the new one with a permanent redirect.
   async redirects() {
