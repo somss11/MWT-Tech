@@ -483,7 +483,7 @@ export const servicesMenu: MenuCategory[] = [
         label: "Google Cloud",
         sub: "SAP, data and AI",
         href: "/services/cloud-infrastructure/google-cloud",
-        mark: "https://zql0rfjwszzixew9.public.blob.vercel-storage.com/solutions/Google%20Cloud.png",
+        mark: "/media/solutions/Google%20Cloud.png",
         markFit: "contain",
       },
     ],

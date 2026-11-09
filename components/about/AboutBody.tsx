@@ -86,7 +86,7 @@ export function AboutBody() {
       <section className="a-hero">
         <div className="a-photo">
           <Image
-            src="https://zql0rfjwszzixew9.public.blob.vercel-storage.com/background/untitled-03672.JPG"
+            src="/media/background/untitled-03672.JPG"
             alt="Two Mawkish colleagues talking through a project in the office"
             fill
             priority

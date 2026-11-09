@@ -33,6 +33,29 @@ const nextConfig = {
       { source: "/services/odoo-implementation", destination: "/services/odoo", permanent: true },
     ];
   },
+  // Images that live in Vercel Blob are served from our own domain under /media, so visitors never see the
+  // random-looking storage hostname (some corporate web filters distrust it).
+  async rewrites() {
+    return [
+      { source: "/media/:path*", destination: "https://zql0rfjwszzixew9.public.blob.vercel-storage.com/:path*" },
+    ];
+  },
+  // Baseline security headers. A Content-Security-Policy is deliberately not set here: the site loads analytics,
+  // YouTube links and a map embed, and a policy needs testing against all of them first.
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains" },
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "X-Frame-Options", value: "SAMEORIGIN" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), payment=()" },
+        ],
+      },
+    ];
+  },
   images: {
     remotePatterns: [
       {
