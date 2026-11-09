@@ -9,6 +9,7 @@ import { PageWatermark } from "@/components/PageWatermark";
 import { SiteLoader } from "@/components/SiteLoader";
 import { JsonLd } from "@/components/JsonLd";
 import { Analytics } from "@/components/analytics/Analytics";
+import { ConsentBanner } from "@/components/analytics/ConsentBanner";
 import { BackToTop } from "@/components/BackToTop";
 import { DEFAULT_OG_IMAGE, organizationLd, robotsDefault, siteUrl, websiteLd } from "@/lib/seo";
 
@@ -87,6 +88,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <JsonLd data={[organizationLd, websiteLd]} />
         <Analytics />
+        <ConsentBanner />
         {/* Splash sits above absolutely everything, including the navbar,
             and fades out once the page is ready — the navbar is already
             rendered underneath it the whole time, so the fade genuinely
