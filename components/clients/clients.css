@@ -31,6 +31,8 @@
 @media (max-width: 620px) { .cl section { padding-block: 64px; } }
 .cl [id] { scroll-margin-top: 112px; }
 .cl .c-priv { color: #17694b; }
+.cl a.c-priv { text-decoration: underline; text-underline-offset: 2px; }
+.cl .c-form > p.c-why { font-size: 13px; margin: -10px 0 18px; }
 
 .cl .c-hero { padding-block: 56px 72px; }
 .cl .c-hero h1 { font-size: clamp(36px, 5vw, 60px); }

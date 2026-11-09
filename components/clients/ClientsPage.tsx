@@ -385,6 +385,13 @@ function AccessForm({
       </div>
       <h2>Read the full case study</h2>
       <p>Tell us who you are and we&apos;ll open this case study, and every other one on this page.</p>
+      <p className="c-why">
+        We use these details only to email you a one-time code, open the case studies for you, and let our team follow up. See our{" "}
+        <a href="/privacy" target="_blank" rel="noopener" className="c-priv">
+          privacy policy
+        </a>
+        .
+      </p>
       <div className="c-hp" aria-hidden="true">
         <label>
           Leave this empty
@@ -419,7 +426,10 @@ function AccessForm({
         <input type="checkbox" id="c-ok" name="consent" {...fieldProps("consent")} />
         <span>
           I agree that Mawkish Technologies may contact me about this request, as described in its{" "}
-          <span className="c-priv">privacy notice</span>.
+          <a href="/privacy" target="_blank" rel="noopener" className="c-priv">
+            privacy policy
+          </a>
+          .
         </span>
       </label>
       {err("consent")}

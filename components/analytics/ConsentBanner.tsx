@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { setConsent, useConsent } from "@/lib/consent";
 
 /** Cookie notice shown until the visitor chooses. Accept and Decline carry equal weight. See Analytics for what it gates. */
@@ -19,7 +20,10 @@ export function ConsentBanner() {
     >
       <div className="mx-auto flex max-w-7xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between sm:gap-8">
         <p className="text-sm leading-relaxed text-white/80">
-          We use cookies to measure activity and traffic on this site. They load only if you accept.
+          We use cookies to measure activity and traffic on this site. They load only if you accept.{" "}
+          <Link href="/privacy" className="underline underline-offset-2 hover:text-white">
+            Privacy policy
+          </Link>
         </p>
         <div className="flex flex-none gap-3">
           <button
