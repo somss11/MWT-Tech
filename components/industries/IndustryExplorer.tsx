@@ -3,13 +3,12 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { industryPage } from "@/lib/industries-menu";
 import { ICON, INDUSTRIES, LINES, SALESFORCE, type Industry, type Platform } from "./data";
 
 const PN: Record<Platform, string> = { sap: "SAP", sf: "Salesforce" };
 
-// Printing and Packaging has a page of its own instead of the slide-in guide.
-const PRINT_KEY = "print";
-const PRINT_PATH = "/industries/printing-and-packaging";
+// Printing and Packaging and Tea & Herbs have a page of their own instead of the slide-in guide.
 
 function Icon({ k }: { k: string }) {
   return (
@@ -40,8 +39,8 @@ export function IndustryExplorer() {
 
   const open = useCallback((k: string, p: Platform, push: boolean) => {
     if (!INDUSTRIES.some((x) => x.k === k)) return;
-    if (k === PRINT_KEY) {
-      router.push(PRINT_PATH);
+    if (industryPage[k]) {
+      router.push(industryPage[k]);
       return;
     }
     const platform: Platform = p === "sf" && SALESFORCE[k] ? "sf" : "sap";
@@ -169,8 +168,8 @@ export function IndustryExplorer() {
               </div>
             </>
           );
-          return d.k === PRINT_KEY ? (
-            <Link key={d.k} href={PRINT_PATH} className="i-card" data-k={d.k}>
+          return industryPage[d.k] ? (
+            <Link key={d.k} href={industryPage[d.k]} className="i-card" data-k={d.k}>
               {inner}
             </Link>
           ) : (

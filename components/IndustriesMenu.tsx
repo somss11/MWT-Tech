@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Manrope } from "next/font/google";
 import { useEffect, useRef, useState } from "react";
-import { industriesMenu } from "@/lib/industries-menu";
+import { industriesMenu, industryPage } from "@/lib/industries-menu";
 
 // The Industries panel, laid out like the services panel: a pale sheet over the dimmed page,
 // a rail of platforms on the left and the industries on the right. Content from the supplied page.
@@ -37,9 +37,9 @@ export function IndustriesMenu({ open, onEnter, onLeave, pathname }: { open: boo
   };
 
   const rows = industriesMenu.filter((x) => tab === "all" || x.p.includes(tab));
-  // Printing and Packaging has a page of its own; every other industry opens its guide on the Industries page.
+  // Printing and Packaging and Tea & Herbs have a page of their own; every other industry opens its guide on the Industries page.
   const hrefFor = (k: string) =>
-    k === "print" ? "/industries/printing-and-packaging" : `/industries#industry-${k}${tab === "all" ? "" : tab === "sf" ? "/salesforce" : "/sap"}`;
+    industryPage[k] ?? `/industries#industry-${k}${tab === "all" ? "" : tab === "sf" ? "/salesforce" : "/sap"}`;
   const onIndustries = pathname === "/industries";
 
   return (
@@ -127,7 +127,7 @@ export function IndustriesMenu({ open, onEnter, onLeave, pathname }: { open: boo
                   );
                   const cls = "group/i flex items-start gap-3 rounded-xl px-3 py-[11px] hover:bg-white hover:shadow-[0_4px_14px_rgba(0,0,0,0.05)] focus-visible:bg-white";
                   // On the Industries page itself a hash link opens the guide at once; elsewhere it navigates there.
-                  return onIndustries && x.k !== "print" ? (
+                  return onIndustries && !industryPage[x.k] ? (
                     <a key={x.k} href={hrefFor(x.k)} onClick={onLeave} className={cls}>
                       {body}
                     </a>

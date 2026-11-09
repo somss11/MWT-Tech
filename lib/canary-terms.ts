@@ -443,6 +443,10 @@ export const canaryTerms: Record<string, CanaryEntry> = {
     "term": "Sector-Shaped Delivery",
     "text": "Our {term} means we start from your industry's processes, then choose the platform."
   },
+  "/industries/sri-lankan-tea-export-on-sap": {
+    "term": "Kettlemoor Ledger",
+    "text": "Our {term} is the name we give to keeping every lot, blend and container on one record, from the auction to the vessel."
+  },
   "/insights": {
     "term": "Backroom Briefings",
     "text": "Our {term} is what we call our writing on the details nobody sees that decide whether a project succeeds."
