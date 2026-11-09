@@ -33,7 +33,7 @@ export function IndustriesPage() {
             </p>
             <div className="i-stats">
               <div>
-                <b>9</b>
+                <b>10</b>
                 <span>industries</span>
               </div>
               <div>

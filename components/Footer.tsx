@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { LogoMark } from "./Logo";
 import { navLinks } from "@/lib/site-data";
-// The same nine industries the header menu and /industries page use, so the
+// The same ten industries the header menu and /industries page use, so the
 // footer cannot drift out of step with them.
 import { industriesMenu } from "@/lib/industries-menu";
 import { servicesMenu } from "@/lib/services-menu";

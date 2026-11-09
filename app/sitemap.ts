@@ -41,6 +41,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...databricksPages.map((p) => entry(dbPath(p.slug), p.slug ? 0.7 : 0.85, "monthly", p.updated)),
     entry("/industries", 0.7, "monthly"),
     entry("/industries/printing-and-packaging", 0.6, "monthly"),
+    entry("/industries/sri-lankan-tea-export-on-sap", 0.6, "monthly", "2026-11-09"),
     entry("/insights", 0.6, "weekly"),
     ...insights.map((p) => entry(`/insights/${p.slug}`, 0.5, "monthly")),
     entry("/about", 0.6, "yearly"),

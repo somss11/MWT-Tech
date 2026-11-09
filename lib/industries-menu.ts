@@ -1,6 +1,12 @@
 // What the Industries menu in the header shows, from the supplied Industries page.
 export type MenuIndustry = { k: string; n: string; p: ("sap" | "sf")[]; promise: string; sap: string; sf: string; icon: string };
 
+// Industries that have a page of their own instead of the slide-in guide, by industry key.
+export const industryPage: Record<string, string> = {
+  print: "/industries/printing-and-packaging",
+  tea: "/industries/sri-lankan-tea-export-on-sap",
+};
+
 export const industriesMenu: MenuIndustry[] = [
   {
     "k": "groups",
@@ -104,5 +110,16 @@ export const industriesMenu: MenuIndustry[] = [
     "sap": "Feed, flocks, processing and catch weight",
     "sf": "",
     "icon": "<path d=\"M12 3c-3.5 0-6 5-6 10a6 6 0 0 0 12 0c0-5-2.5-10-6-10z\"/>"
+  },
+  {
+    "k": "tea",
+    "n": "Tea & Herbs F&B Manufacturing",
+    "p": [
+      "sap"
+    ],
+    "promise": "From the auction catalogue to the vessel",
+    "sap": "Lots, blends, packing and export clearance",
+    "sf": "",
+    "icon": "<path d=\"M5 9h11v5a5.5 5.5 0 0 1-11 0zM16 10.5h1.8a2.2 2.2 0 0 1 0 4.4H16M7 3.5c0 1.2 1.2 1.2 1.2 2.4M11 3.5c0 1.2 1.2 1.2 1.2 2.4M4 20h13\"/>"
   }
 ];

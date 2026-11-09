@@ -21,7 +21,8 @@ export const ICON: Record<string, string> = {
   "auto": "<path d=\"M4 16v-4l2-5h12l2 5v4zM4 16v2h3v-2M17 16v2h3v-2M7 13h1M16 13h1\"/>",
   "oil": "<path d=\"M5 20V5a2 2 0 0 1 2-2h5a2 2 0 0 1 2 2v15M3 20h13M7 7h5v4H7zM14 9h2l2 2v6a1.5 1.5 0 0 0 3 0V8l-3-3\"/>",
   "print": "<path d=\"M7 8V3h10v5M7 17H4v-7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v7h-3M7 14h10v7H7z\"/>",
-  "poultry": "<path d=\"M12 3c-3.5 0-6 5-6 10a6 6 0 0 0 12 0c0-5-2.5-10-6-10z\"/>"
+  "poultry": "<path d=\"M12 3c-3.5 0-6 5-6 10a6 6 0 0 0 12 0c0-5-2.5-10-6-10z\"/>",
+  "tea": "<path d=\"M5 9h11v5a5.5 5.5 0 0 1-11 0zM16 10.5h1.8a2.2 2.2 0 0 1 0 4.4H16M7 3.5c0 1.2 1.2 1.2 1.2 2.4M11 3.5c0 1.2 1.2 1.2 1.2 2.4M4 20h13\"/>"
 };
 
 export const LINES: Record<Platform, Record<string, string>> = {
@@ -34,7 +35,8 @@ export const LINES: Record<Platform, Record<string, string>> = {
     "auto": "Vehicles, parts, workshops and warranty",
     "oil": "Hydrocarbon stock, terminals and assets",
     "print": "Configured jobs, production and costing",
-    "poultry": "Feed, flocks, processing and catch weight"
+    "poultry": "Feed, flocks, processing and catch weight",
+    "tea": "Lots, blends, packing and export clearance"
   },
   "sf": {
     "food": "Export buyers, key accounts and retail visits",
@@ -1343,6 +1345,28 @@ export const INDUSTRIES: Industry[] = [
       "Confirm catch weight needs and the edition",
       "Design how flock data reaches SAP from the farms"
     ]
+  },
+  {
+    // Has a page of its own (see industryPage), so the slide-in guide is never shown and its sections stay empty.
+    "k": "tea",
+    "n": "Tea & Herbs F&B Manufacturing",
+    "p": "Tea exporters who buy, taste, blend, pack and ship to the world, on one SAP core.",
+    "c": [
+      "Auction buying and lot traceability",
+      "Blends, flavour recipes and expiry",
+      "Export clearance and contract costing"
+    ],
+    "pr": [
+      "SAP Cloud ERP"
+    ],
+    "intro": [],
+    "ed": ["", ""],
+    "ch": [],
+    "cap": [],
+    "prod": [],
+    "ai": [],
+    "ext": [],
+    "start": []
   }
 ];
 

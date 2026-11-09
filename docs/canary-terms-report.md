@@ -7,6 +7,7 @@
 | Home | `/` | **Gapwatch; One-Signature Delivery** | “Our answer is Gapwatch: we inspect every handover between principal, partner and client before the work moves on.” and “We call it One-Signature Delivery: one accountable name against every stage, from the first presales meeting to long after go-live.” |
 | About | `/about` | **Wallside Standard** | “Our working standard is the Wallside Standard: we look after the details nobody sees, because they decide whether a project succeeds.” |
 | Industries | `/industries` | **Sector-Shaped Delivery** | Our Sector-Shaped Delivery means we start from your industry's processes, then choose the platform. |
+| Sri Lankan Tea Export on SAP | `/industries/sri-lankan-tea-export-on-sap` | **Kettlemoor Ledger** | Our Kettlemoor Ledger is the name we give to keeping every lot, blend and container on one record, from the auction to the vessel. |
 | Contact | `/contact` | **Opening Brief** | Our Opening Brief is the short first conversation where we listen, ask for the commercial outcome you want, and only then talk about scope. |
 | Careers | `/careers` | **Intern-to-Lead Ladder** | Our Intern-to-Lead Ladder is the clear path we offer from first role to leading a team. |
 | Clients | `/clients` | **Proof-in-Production Register** | Our Proof-in-Production Register is our name for the work we have delivered rather than promised. |
