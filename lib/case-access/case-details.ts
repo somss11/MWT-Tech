@@ -161,4 +161,21 @@ export const caseDetails: Record<string, CaseDetail> = {
     ints: [["Fit-to-standard","one template for Sri Lanka and India"],["Country versions","Sri Lanka and India, with GST e-invoicing"],["Intercompany","cans, ends and coil traded across entities"],["Migration Cockpit","materials, partners and balances staged"]],
     r: [["2","countries on one cloud ERP",1],["720M","cans a year, Horana plant",1],["2B","can ends a year",1],["E2E","business processes in scope",1]],
   },
+  // Sun Siyam: a roll-out that is only just going live, so there are no results yet and `r` is
+  // empty (the case study then shows the facts in `f` in the results band). Built from the kick-off deck and the scope
+  // of the signed addendum. Fees, term, usage allowances, support plans and all other commercial terms are left out on purpose.
+  "sun-siyam": {
+    about: "A Maldivian hospitality group that has been running resorts since 1990. Five resorts in the Maldives, Vilu Reef to Siyam World, and a beach retreat at Pasikudah in Sri Lanka all depend on freight arriving by sea and air. Control Tower gives the group one live view of every inbound shipment.",
+    f: [],
+    plat: "Swyftflo Digital Supply Chain Control Tower",
+    platLogos: ["/images/swyftflo/control-tower.png"],
+    later: { name: "Source to Pay", logo: "/images/swyftflo/source-to-pay.png", note: "Planned as a future enhancement, taking the same shipments back to sourcing, bids and awards." },
+    mh: "Capabilities",
+    mods: ["Live map for ocean and air freight","Predictive ETAs and geofence alerts","Trade information pipeline","Daily status report dashboard","Document and image vault","Guest access for forwarders and agents"],
+    areas: ["One command centre for the supply chain","Status read at a glance, not by phone","Each property follows its own inbound shipments","Forwarders and agents update milestones","Documents and proof of work in one place","Early warning on delays and incidents"],
+    ah: "What they get from these capabilities",
+    ih: "",
+    ints: [],
+    r: [],
+  },
 };

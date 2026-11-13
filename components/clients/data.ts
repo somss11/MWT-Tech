@@ -1,4 +1,4 @@
-export type PlatformKey = "sf" | "rise" | "grow";
+export type PlatformKey = "sf" | "rise" | "grow" | "sw";
 
 /** What the client list needs, and what a visitor can see before they unlock the case studies. */
 export type ClientCard = {
@@ -8,6 +8,8 @@ export type ClientCard = {
   co: string;
   ind: string;
   st?: string;
+  /** True when there is no logo file for this client: the card and the case study show the name as text instead. */
+  noLogo?: boolean;
   prods: [string, string][];
   /** The case study's headline. The body is gated: see lib/case-access/case-details.ts. */
   t: string;
@@ -18,6 +20,10 @@ export type CaseDetail = {
   about: string;
   f: [string, string][];
   plat: string;
+  /** Logos of the platform(s) shown beside its name. */
+  platLogos?: string[];
+  /** A module planned for later: shown in its own "Future enhancement" box with its logo. */
+  later?: { name: string; logo: string; note: string };
   mh: string;
   mods: string[];
   areas: string[];
@@ -29,7 +35,7 @@ export type CaseDetail = {
 
 export type Client = ClientCard & CaseDetail;
 
-export const platforms: Record<PlatformKey, string> = { sf: "Salesforce", rise: "RISE with SAP", grow: "GROW with SAP" };
+export const platforms: Record<PlatformKey, string> = { sf: "Salesforce", rise: "RISE with SAP", grow: "GROW with SAP", sw: "Swyftflo" };
 
 /** The public side of the case studies from the supplied Clients page. */
 export const clients: ClientCard[] = [
@@ -47,4 +53,5 @@ export const clients: ClientCard[] = [
   { id: "lohia", n: "Lohia Corp", p: "rise", co: "India", ind: "Engineering and machinery", prods: [["RISE with SAP",""],["Suite on HANA",""],["ECC migration",""]], t: "SAP ECC to RISE with SAP via Suite on HANA, across Lohia Corp and Leesona US" },
   { id: "eswaran", n: "Eswaran Brothers Exports", p: "grow", co: "Sri Lanka", ind: "Tea export and manufacturing", prods: [["GROW with SAP",""],["S/4HANA Cloud Public Edition",""],["SAP BTP",""]], t: "GROW with SAP across all business processes, with a tea manufacturing module on SAP BTP" },
   { id: "ceylon-beverage-can", n: "Ceylon Beverage Can", p: "grow", co: "Sri Lanka and India", ind: "Aluminium can manufacturing", st: "In progress", prods: [["GROW with SAP",""],["S/4HANA Cloud Public Edition",""]], t: "GROW with SAP across all business processes, for Sri Lanka and the Chennai operations" },
+  { id: "sun-siyam", n: "Sun Siyam Resorts", p: "sw", co: "Maldives", ind: "Resorts and hospitality", prods: [["Control Tower","sw"]], t: "Swyftflo Digital Supply Chain Control Tower" },
 ];

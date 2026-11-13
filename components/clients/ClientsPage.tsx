@@ -7,6 +7,13 @@ import { clients, platforms } from "./data";
 import "./clients.css";
 
 const logo = (c: ClientCard) => `/images/clients/${c.id}.png`;
+
+/** A client with no logo file is shown by name instead of a broken image. */
+function Mark({ c }: { c: ClientCard }) {
+  if (c.noLogo) return <span className="c-wm">{c.n}</span>;
+  // eslint-disable-next-line @next/next/no-img-element
+  return <img src={logo(c)} alt={`${c.n} logo`} loading="lazy" />;
+}
 const platformKeys = Object.keys(platforms) as PlatformKey[];
 
 function readHash(): string | null {
@@ -18,8 +25,7 @@ function Card({ c }: { c: ClientCard }) {
   return (
     <a className="c-card c-fade" href={`#case/${c.id}`} aria-label={`${c.n}: read the case study`}>
       <div className="c-logo">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={logo(c)} alt={`${c.n} logo`} loading="lazy" />
+        <Mark c={c} />
         {c.st ? <span className="c-st">{c.st}</span> : null}
       </div>
       <div className="c-meta">
@@ -46,27 +52,47 @@ function CaseBody({ c }: { c: Client }) {
   const facts: [string, string][] = c.r.length ? c.r.map((r) => [r[0], r[1]]) : c.f;
   return (
     <>
-      <div className="c-cols">
+      <div className={`c-cols${c.ints.length ? "" : " c-cols-2"}`}>
         <div>
           <div className="c-box">
             <div className="c-lg">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={logo(c)} alt={`${c.n} logo`} />
+              <Mark c={c} />
             </div>
             <p>{c.about}</p>
-            <div className="c-facts">
-              {c.f.map((f) => (
-                <div key={f[1]}>
-                  <b>{f[0]}</b>
-                  <span>{f[1]}</span>
-                </div>
-              ))}
-            </div>
+            {c.f.length ? (
+              <div className="c-facts">
+                {c.f.map((f) => (
+                  <div key={f[1]}>
+                    <b>{f[0]}</b>
+                    <span>{f[1]}</span>
+                  </div>
+                ))}
+              </div>
+            ) : null}
           </div>
           <div className="c-box">
             <span className="c-k">Platform</span>
             <div className="c-plat">{c.plat}</div>
+            {c.platLogos?.length ? (
+              <div className="c-plogos">
+                {c.platLogos.map((src) => (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img key={src} src={src} alt="" loading="lazy" />
+                ))}
+              </div>
+            ) : null}
           </div>
+          {c.later ? (
+            <div className="c-box">
+              <span className="c-k">Future enhancement</span>
+              <div className="c-plat">{c.later.name}</div>
+              <div className="c-plogos">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={c.later.logo} alt="" loading="lazy" />
+              </div>
+              <p className="c-later">{c.later.note}</p>
+            </div>
+          ) : null}
         </div>
         <div>
           <div className="c-box">
@@ -86,27 +112,31 @@ function CaseBody({ c }: { c: Client }) {
             </ul>
           </div>
         </div>
-        <div>
-          <div className="c-box">
-            <span className="c-k">{c.ih}</span>
-            <ul className="c-rows">
-              {c.ints.map((i) => (
-                <li key={i[0]}>
-                  <b>{i[0]}</b>: {i[1]}
-                </li>
-              ))}
-            </ul>
+        {c.ints.length ? (
+          <div>
+            <div className="c-box">
+              <span className="c-k">{c.ih}</span>
+              <ul className="c-rows">
+                {c.ints.map((i) => (
+                  <li key={i[0]}>
+                    <b>{i[0]}</b>: {i[1]}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
+        ) : null}
+      </div>
+      {facts.length ? (
+        <div className="c-res" style={{ gridTemplateColumns: `repeat(${Math.min(4, facts.length)},minmax(0,1fr))` }}>
+          {facts.map((r) => (
+            <div key={r[1]}>
+              <b>{r[0]}</b>
+              <span>{r[1]}</span>
+            </div>
+          ))}
         </div>
-      </div>
-      <div className="c-res" style={{ gridTemplateColumns: `repeat(${Math.min(4, facts.length)},minmax(0,1fr))` }}>
-        {facts.map((r) => (
-          <div key={r[1]}>
-            <b>{r[0]}</b>
-            <span>{r[1]}</span>
-          </div>
-        ))}
-      </div>
+      ) : null}
     </>
   );
 }
@@ -558,7 +588,7 @@ export function ClientsPage({ fontClass }: { fontClass: string }) {
               </h1>
               <p className="lede">
                 From tea exporters and food makers to conglomerates and electrical manufacturers, these are some of the
-                companies we&apos;ve taken to SAP and Salesforce, in Sri Lanka and India. Select a client to read how we
+                companies we&apos;ve taken to SAP, Salesforce and Swyftflo, in Sri Lanka, India and the Maldives. Select a client to read how we
                 did it.
               </p>
               <div className="c-stats">
@@ -567,12 +597,12 @@ export function ClientsPage({ fontClass }: { fontClass: string }) {
                   <span>clients featured</span>
                 </div>
                 <div>
-                  <b>3</b>
-                  <span>platforms: RISE, GROW and Salesforce</span>
+                  <b>{platformKeys.length}</b>
+                  <span>platforms: RISE, GROW, Salesforce and Swyftflo</span>
                 </div>
                 <div>
                   <b>{countries}</b>
-                  <span>countries: Sri Lanka and India</span>
+                  <span>countries: Sri Lanka, India and the Maldives</span>
                 </div>
               </div>
             </div>
@@ -597,6 +627,7 @@ export function ClientsPage({ fontClass }: { fontClass: string }) {
                     ["all", "All countries"],
                     ["Sri Lanka", "Sri Lanka"],
                     ["India", "India"],
+                    ["Maldives", "Maldives"],
                   ].map(([v, label]) => (
                     <button key={v} type="button" aria-pressed={fc === v} onClick={() => setFc(v)}>
                       {label}
@@ -646,7 +677,8 @@ export function ClientsPage({ fontClass }: { fontClass: string }) {
                 <ul>
                   <li>SAP Cloud ERP, RISE and GROW with SAP</li>
                   <li>Salesforce clouds and integration</li>
-                  <li>Sri Lanka and India delivery</li>
+                  <li>Swyftflo supply chain platform</li>
+                  <li>Sri Lanka, India and Maldives delivery</li>
                 </ul>
               </div>
             </div>
