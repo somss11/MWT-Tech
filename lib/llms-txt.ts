@@ -54,7 +54,7 @@ export function buildLlmsTxt(): string {
     { name: "Industries", path: "/industries", description: "Step-by-step SAP and Salesforce guides for ten industries across Sri Lanka and India: diversified groups, food and tea, tea and herbs F&B manufacturing, manufacturing, consumer brands, tiles and building materials, automotive, oil and gas, printing and packaging, and poultry and livestock." },
     { name: "Printing and Packaging on SAP", path: "/industries/printing-and-packaging", description: "How SAP runs a printing and packaging converter, from artwork to dispatch: estimating, planning, production, quality, warehouse and finance on one SAP core." },
     { name: "Sri Lankan Tea Export on SAP (Tea & Herbs F&B Manufacturing)", path: "/industries/sri-lankan-tea-export-on-sap", description: "How SAP runs a Sri Lankan tea exporter, from auction to vessel: buying, tasting, blending, packing, export clearance and contract costing on one SAP Cloud ERP core." },
-    { name: "Clients", path: "/clients", description: "Companies in Sri Lanka and India that run on SAP and Salesforce implementations delivered by Mawkish Technologies. Full case-study detail is available after a free registration." },
+    { name: "Clients", path: "/clients", description: "Companies in Sri Lanka, India and the Maldives that run on SAP, Salesforce and Swyftflo implementations delivered by Mawkish Technologies. Full case-study detail is available after a free registration." },
     { name: "Contact", path: "/contact", description: "Schedule a consultation, request a demo or request a proposal." },
   ];
   const articles: Entry[] = [

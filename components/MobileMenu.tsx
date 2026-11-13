@@ -147,7 +147,7 @@ function CategoryBody({ c }: { c: MenuCategory }) {
 
 function CategoryRow({ c, open, onToggle }: { c: MenuCategory; open: boolean; onToggle: () => void }) {
   const row = "flex min-h-12 w-full items-center gap-3 border-b border-white/[0.07] px-1 text-left";
-  const mark = c.mark ? <img src={c.mark} alt="" className="h-5 w-5 shrink-0 object-contain" /> : <span aria-hidden="true" className="h-5 w-5 shrink-0" />;
+  const mark = c.mark ? <img src={c.mark} alt="" className="h-5 w-5 shrink-0 object-contain" /> : <span aria-hidden="true" className="grid h-5 w-5 shrink-0 place-items-center rounded-[5px] bg-white font-display text-[11px] font-extrabold leading-none text-[#1c6b51]">{c.label.charAt(0)}</span>;
   const label = (dim: boolean) => (
     <span className={`flex min-w-0 flex-1 flex-col ${dim ? "text-white/45" : "text-white"}`}>
       <span className="text-[15px] font-semibold leading-tight">{c.label}</span>

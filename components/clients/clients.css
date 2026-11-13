@@ -65,6 +65,9 @@
 .cl .c-prods span { font-size: 12px; font-weight: 700; border-radius: 6px; padding: 3px 8px; background: rgba(23,105,75,.08); color: var(--green-hi); }
 .cl .c-prods span.sf { background: #eaf5fe; color: #0b5cab; }
 .cl .c-prods span.op { background: #f3f3f3; color: #555; }
+.cl .c-prods span.sw { background: #e8f6ef; color: #12804a; }
+.cl .c-wm { font-size: 19px; font-weight: 800; letter-spacing: -.01em; color: #1b2a24; text-align: center; padding: 0 18px; line-height: 1.2; }
+.cl .c-box .c-lg .c-wm { padding: 0; text-align: left; font-size: 24px; }
 .cl .c-more { margin-top: auto; padding-top: 6px; font-size: 13.5px; font-weight: 700; color: var(--green-hi); }
 .cl .c-more i { font-style: normal; display: inline-block; transition: transform .25s; }
 .cl .c-card:hover .c-more i { transform: translateX(4px); }
@@ -90,6 +93,10 @@
 .cl .c-facts b { display: block; font-family: var(--display); font-size: 24px; font-weight: 800; }
 .cl .c-facts span { color: var(--muted); font-size: 13px; }
 .cl .c-plat { font-weight: 700; font-size: 15.5px; }
+.cl .c-later { margin: 10px 0 0; font-size: 14px; color: var(--muted); }
+.cl .c-plogos { display: flex; gap: 12px; margin-top: 12px; }
+.cl .c-plogos img { height: 44px; width: auto; object-fit: contain; }
+@media (min-width: 1081px) { .cl .c-cols.c-cols-2 { grid-template-columns: minmax(0,1fr) minmax(0,1fr); } }
 .cl .c-list2 { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 14px; }
 .cl .c-list2 li { font-size: 14px; padding-left: 16px; position: relative; }
 .cl .c-list2 li::before { content: ""; position: absolute; left: 0; top: .55em; width: 7px; height: 7px; border-radius: 2px; background: var(--green-hi); }

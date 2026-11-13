@@ -8,7 +8,7 @@ const jakarta = Plus_Jakarta_Sans({ variable: "--font-pjs", subsets: ["latin"], 
 const manrope = Manrope({ variable: "--font-manrope", subsets: ["latin"], weight: ["400", "500", "600", "700"] });
 
 const description =
-  "Companies in Sri Lanka and India that run on SAP and Salesforce implementations delivered by Mawkish Technologies.";
+  "Companies in Sri Lanka, India and the Maldives that run on SAP, Salesforce and Swyftflo implementations delivered by Mawkish Technologies.";
 
 export const metadata: Metadata = {
   title: "Our Clients",
