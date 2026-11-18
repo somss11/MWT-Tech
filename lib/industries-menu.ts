@@ -5,6 +5,7 @@ export type MenuIndustry = { k: string; n: string; p: ("sap" | "sf")[]; promise:
 export const industryPage: Record<string, string> = {
   print: "/industries/printing-and-packaging",
   tea: "/industries/sri-lankan-tea-export-on-sap",
+  oil: "/industries/oil-and-gas-on-sap",
 };
 
 export const industriesMenu: MenuIndustry[] = [
@@ -21,7 +22,7 @@ export const industriesMenu: MenuIndustry[] = [
   },
   {
     "k": "food",
-    "n": "Food, Beverage and Tea",
+    "n": "Food & Beverage",
     "p": [
       "sap",
       "sf"

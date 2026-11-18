@@ -8,7 +8,7 @@ import { ICON, INDUSTRIES, LINES, SALESFORCE, type Industry, type Platform } fro
 
 const PN: Record<Platform, string> = { sap: "SAP", sf: "Salesforce" };
 
-// Printing and Packaging and Tea & Herbs have a page of their own instead of the slide-in guide.
+// Printing and Packaging, Tea & Herbs and Oil and Gas have a page of their own instead of the slide-in guide.
 
 function Icon({ k }: { k: string }) {
   return (
@@ -154,13 +154,11 @@ export function IndustryExplorer() {
                 <div className="i-plats">
                   {platsOf(d.k).map((p) => (
                     <div key={p}>
-                      <i className={p}>{PN[p]}</i>
                       <span>{LINES[p][d.k] || ""}</span>
                     </div>
                   ))}
                 </div>
                 <div className="i-proof">
-                  <span className="i-n2">{SALESFORCE[d.k] ? "SAP and Salesforce guides" : "SAP guide"}</span>
                   <span className="i-go">
                     Open <i>→</i>
                   </span>

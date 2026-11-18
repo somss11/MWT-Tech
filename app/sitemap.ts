@@ -1,3 +1,4 @@
+import { advisoryHub, advisoryPages, advisoryPath } from "@/lib/sap-advisory";
 import type { MetadataRoute } from "next";
 import { salesforcePages, sfPath } from "@/lib/salesforce-pages";
 import { insights, services } from "@/lib/site-data";
@@ -42,6 +43,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     entry("/industries", 0.7, "monthly"),
     entry("/industries/printing-and-packaging", 0.6, "monthly"),
     entry("/industries/sri-lankan-tea-export-on-sap", 0.6, "monthly", "2026-11-09"),
+    entry("/industries/oil-and-gas-on-sap", 0.6, "monthly", "2026-11-18"),
+    ...[advisoryHub, ...advisoryPages].map((p) => entry(advisoryPath(p), p.slug ? 0.6 : 0.7, "monthly", "2026-11-18")),
     entry("/insights", 0.6, "weekly"),
     ...insights.map((p) => entry(`/insights/${p.slug}`, 0.5, "monthly")),
     entry("/about", 0.6, "yearly"),
