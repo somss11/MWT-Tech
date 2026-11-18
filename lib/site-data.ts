@@ -1,3 +1,5 @@
+import { ADVISORY_HUB, advisoryHub, advisoryPages, advisoryPath } from "./sap-advisory";
+
 export const siteConfig = {
   name: "Mawkish Technologies",
   tagline: "Technology that Creates Real Business Outcomes",
@@ -9,6 +11,45 @@ export const siteConfig = {
     { label: "Request a Proposal", href: "/contact?intent=proposal" },
   ],
 };
+
+export type HeaderNavItem = {
+  label: string;
+  href: string;
+  /** Which dropdown this item opens, if any. "services" and "industries" have their own large panels; the others are simple lists. */
+  menu?: "services" | "industries" | "advisory" | "more";
+  /** The links of a simple dropdown. */
+  items?: { label: string; href: string }[];
+};
+
+/** The header and phone menu. (The footer keeps using navLinks below, which lists every page flat.) */
+export const headerNav: HeaderNavItem[] = [
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Copyright", href: "/copyright" },
+  // Not a page: "Services" only opens the menu. The href is kept as an identity/active-state key.
+  { label: "Services", href: "/services", menu: "services" },
+  {
+    label: "SAP Advisory",
+    href: "/services/sap-advisory",
+    menu: "advisory",
+    items: [
+      { label: advisoryHub.label, href: ADVISORY_HUB },
+      ...advisoryPages.map((p) => ({ label: p.label, href: advisoryPath(p) })),
+    ],
+  },
+  { label: "Industries", href: "/industries", menu: "industries" },
+  { label: "Clients", href: "/clients" },
+  {
+    label: "More",
+    // Not a page: "More" only opens the menu.
+    href: "/more",
+    menu: "more",
+    items: [
+      { label: "News & Insights", href: "/insights" },
+      { label: "Careers", href: "/careers" },
+    ],
+  },
+];
 
 export const navLinks = [
   { label: "Home", href: "/" },

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { navLinks, siteConfig } from "@/lib/site-data";
+import { headerNav, siteConfig, type HeaderNavItem } from "@/lib/site-data";
 import { servicesMenu, type MenuCategory, type MenuLink } from "@/lib/services-menu";
 import { industriesMenu } from "@/lib/industries-menu";
 
@@ -215,6 +215,43 @@ function ServicesRow({ label, href, active, pathname }: { label: string; href: s
 }
 
 /** "Industries" unfolds into three rows: all industries, the SAP ones and the Salesforce ones. Not every industry is listed. */
+/** A simple fold-out list of pages: used for "SAP Advisory" and "More". */
+function ListRow({ link, active, pathname }: { link: HeaderNavItem; active: boolean; pathname: string }) {
+  const [open, setOpen] = useState(false);
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  return (
+    <div>
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
+        className={`flex min-h-14 w-full items-center justify-between border-b border-white/10 px-1 text-left text-[13px] font-semibold uppercase tracking-wider active:bg-white/5 ${active ? "text-mw-mint" : "text-white"}`}
+      >
+        {link.label}
+        <Plus open={open} />
+      </button>
+      <Fold open={open}>
+        <div className="pb-2 pl-3">
+          {(link.items ?? []).map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              aria-current={pathname === item.href ? "page" : undefined}
+              className={`flex min-h-12 items-center justify-between gap-3 border-b border-white/[0.07] px-1 py-2 text-[15px] active:bg-white/5 ${pathname === item.href ? "text-mw-mint" : "text-white"}`}
+            >
+              {item.label}
+              <span aria-hidden="true" className="text-mw-mint">→</span>
+            </Link>
+          ))}
+        </div>
+      </Fold>
+    </div>
+  );
+}
+
 function IndustriesRow({ label, href, active, pathname }: { label: string; href: string; active: boolean; pathname: string }) {
   const [open, setOpen] = useState(false);
   useEffect(() => {
@@ -307,9 +344,11 @@ export function MobileMenu({
       }`}
     >
       <nav aria-label="Mobile" className="mx-auto max-w-xl px-6 pb-12 pt-2">
-        {navLinks.map((link) =>
-          "children" in link && link.children ? (
+        {headerNav.map((link) =>
+          link.menu === "services" ? (
             <ServicesRow key={link.href} label={link.label} href={link.href} active={isActive(link.href)} pathname={pathname} />
+          ) : link.items ? (
+            <ListRow key={link.href} link={link} active={link.menu === "more" ? link.items.some((i) => isActive(i.href)) : isActive(link.href)} pathname={pathname} />
           ) : link.href === "/industries" ? (
             <IndustriesRow key={link.href} label={link.label} href={link.href} active={isActive(link.href)} pathname={pathname} />
           ) : (

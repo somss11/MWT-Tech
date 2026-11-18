@@ -1,3 +1,4 @@
+import { advisoryHub, advisoryPages, advisoryPath } from "@/lib/sap-advisory";
 import { anthropicPages, anPath } from "@/lib/anthropic-pages";
 import { cloudHub, cloudPages, cloudPath, CLOUD_HUB_PATH } from "@/lib/cloud-pages";
 import { databricksPages, dbPath } from "@/lib/databricks-pages";
@@ -54,6 +55,8 @@ export function buildLlmsTxt(): string {
     { name: "Industries", path: "/industries", description: "Step-by-step SAP and Salesforce guides for ten industries across Sri Lanka and India: diversified groups, food and tea, tea and herbs F&B manufacturing, manufacturing, consumer brands, tiles and building materials, automotive, oil and gas, printing and packaging, and poultry and livestock." },
     { name: "Printing and Packaging on SAP", path: "/industries/printing-and-packaging", description: "How SAP runs a printing and packaging converter, from artwork to dispatch: estimating, planning, production, quality, warehouse and finance on one SAP core." },
     { name: "Sri Lankan Tea Export on SAP (Tea & Herbs F&B Manufacturing)", path: "/industries/sri-lankan-tea-export-on-sap", description: "How SAP runs a Sri Lankan tea exporter, from auction to vessel: buying, tasting, blending, packing, export clearance and contract costing on one SAP Cloud ERP core." },
+    { name: "Oil and Gas on SAP", path: "/industries/oil-and-gas-on-sap", description: "How SAP runs downstream oil and gas, from tanker to forecourt: terminals, quantity conversion at 15°C, road tanker dispatch, station networks, LPG, assets and finance on one SAP core." },
+    ...[advisoryHub, ...advisoryPages].map((p) => ({ name: p.title, path: advisoryPath(p), description: p.description })),
     { name: "Clients", path: "/clients", description: "Companies in Sri Lanka, India and the Maldives that run on SAP, Salesforce and Swyftflo implementations delivered by Mawkish Technologies. Full case-study detail is available after a free registration." },
     { name: "Contact", path: "/contact", description: "Schedule a consultation, request a demo or request a proposal." },
   ];

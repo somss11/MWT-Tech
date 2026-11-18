@@ -6,12 +6,12 @@ import { useEffect, useRef, useState } from "react";
 import { Logo } from "./Logo";
 import { ServicesMenu } from "./ServicesMenu";
 import { IndustriesMenu } from "./IndustriesMenu";
-import { navLinks, siteConfig } from "@/lib/site-data";
+import { headerNav, siteConfig } from "@/lib/site-data";
 import { MobileMenu } from "./MobileMenu";
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
-  const [menu, setMenu] = useState<"services" | "industries" | null>(null);
+  const [menu, setMenu] = useState<"services" | "industries" | "advisory" | "more" | null>(null);
   const megaOpen = menu === "services";
   const indOpen = menu === "industries";
   const pathname = usePathname();
@@ -21,7 +21,7 @@ export function Navbar() {
   // The services panel opens as soon as the pointer reaches the link, and closes
   // after a short grace period, so crossing the gap between the link and the
   // panel doesn't shut it.
-  const openMega = (id: "services" | "industries" = "services") => {
+  const openMega = (id: "services" | "industries" | "advisory" | "more" = "services") => {
     window.clearTimeout(megaTimer.current);
     setMenu(id);
   };
@@ -60,11 +60,12 @@ export function Navbar() {
         {/* One bar, edge to edge: content scrolls underneath it (see header::before in globals.css). */}
         <div className="hidden h-full items-center lg:flex">
           <nav aria-label="Primary" className="flex h-full items-center">
-            {navLinks.map((link) => {
-              const active = isActive(link.href);
-              const id = link.children ? "services" : link.href === "/industries" ? "industries" : null;
+            {headerNav.map((link) => {
+              const active = link.items && link.menu === "more" ? link.items.some((i) => isActive(i.href)) : isActive(link.href);
+              const id = link.menu ?? null;
               const hasMenu = id !== null;
-              const shown = id === "services" ? megaOpen : id === "industries" ? indOpen : false;
+              const shown = id === menu;
+              const simple = Boolean(link.items);
               return (
                 <div
                   key={link.href}
@@ -100,14 +101,14 @@ export function Navbar() {
                         )}
                       </>
                     );
-                    // "Services" has no page of its own: it only opens the menu.
-                    return link.children ? (
+                    // "Services" and "More" have no page of their own: they only open their menu.
+                    return link.menu === "services" || link.menu === "more" ? (
                       <button
                         type="button"
                         aria-current={active ? "page" : undefined}
                         aria-haspopup="true"
                         aria-expanded={shown}
-                        onClick={() => (shown ? setMenu(null) : openMega("services"))}
+                        onClick={() => (shown ? setMenu(null) : openMega(id ?? undefined))}
                         className={cls}
                       >
                         {inner}
@@ -124,6 +125,30 @@ export function Navbar() {
                       </Link>
                     );
                   })()}
+                  {simple && link.items && (
+                    <div
+                      className={`absolute left-0 top-full z-50 min-w-[280px] pt-0 transition-[opacity,transform] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] ${
+                        shown ? "translate-y-0 opacity-100" : "pointer-events-none -translate-y-1 opacity-0"
+                      }`}
+                      inert={!shown}
+                    >
+                      <ul className="mt-1 overflow-hidden rounded-[18px] border border-[#d5dfda] bg-[#eef2f0] p-2 shadow-[0_30px_80px_rgba(0,0,0,0.5)]">
+                        {link.items.map((item) => (
+                          <li key={item.href}>
+                            <Link
+                              href={item.href}
+                              aria-current={pathname === item.href ? "page" : undefined}
+                              className={`flex items-center justify-between gap-4 rounded-xl px-4 py-2.5 text-[14px] font-medium transition-colors duration-150 hover:bg-white hover:text-[#1c6b51] ${
+                                pathname === item.href ? "bg-white text-[#1c6b51]" : "text-[#071912]"
+                              }`}
+                            >
+                              {item.label}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                 </div>
               );
             })}

@@ -201,7 +201,7 @@ export const INDUSTRIES: Industry[] = [
   },
   {
     "k": "food",
-    "n": "Food, Beverage and Tea",
+    "n": "Food & Beverage",
     "p": "Batch production and exports to global markets.",
     "c": [
       "Recipe and batch management",
